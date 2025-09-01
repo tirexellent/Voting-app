@@ -1,9 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: result
   name: result
+  namespace: default
 spec:
   replicas: 1
   selector:
@@ -15,8 +14,12 @@ spec:
         app: result
     spec:
       containers:
-      - image: dockersamples/examplevotingapp_result
-        name: result
+      - name: result
+        image: dockersamples/examplevotingapp_result
         ports:
-        - containerPort: 80
-          name: result
+        - containerPort: 5000
+        env:
+        - name: REDIS_HOST
+          value: "redis"
+        - name: REDIS_PORT
+          value: "6379"
