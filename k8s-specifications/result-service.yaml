@@ -4,6 +4,7 @@ metadata:
   labels:
     app: result
   name: result
+  namespace: default
 spec:
   type: NodePort
   ports:
